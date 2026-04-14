@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Kestrel | Red Hook, Brooklyn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --charcoal: #2d2d2d;
+            --cream: #f5f3ef;
+            --gold: #c9a227;
+            --copper: #b87333;
+            --white: #ffffff;
+            --gray: #6b6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 5% 4rem;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(45deg, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(184, 115, 51, 0.05) 0%, transparent 50%);
+        }
+        
+        .hero::after {
+            content: "EST. 2020";
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: 0.02em;
+        }
+        
+        .hero .kestrel {
+            font-size: 1.2rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            margin-bottom: 1rem;
+        }
+        
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 3rem;
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gold);
+            margin-bottom: 4rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        
+        .about-content p:first-of-type::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            float: left;
+            line-height: 1;
+            padding-right: 0.5rem;
+            color: var(--charcoal);
+        }
+        
+        .awards {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .award {
+            text-align: center;
+        }
+        
+        .award-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        .award-name {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+        
+        /* Menu Section */
+        .menu {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .menu .section-title {
+            color: var(--white);
+        }
+        
+        .menu .section-subtitle {
+            color: var(--copper);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .menu-category {
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-category:first-child {
+            border-top: none;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item-name {
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        
+        .menu-item-price {
+            color: var(--copper);
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+        }
+        
+        .menu-item-desc {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 0.25rem;
+            font-weight: 300;
+        }
+        
+        /* Location Section */
+        .location {
+            background: var(--cream);
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .location-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--white);
+            border-radius: 4px;
+        }
+        
+        .location-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .location-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+            text-align: center;
+        }
+        
+        .contact-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            background: var(--cream);
+            border-radius: 4px;
+        }
+        
+        .contact-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .phone {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+            display: block;
+            margin: 1.5rem 0;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .phone:hover {
+            color: var(--gold);
+        }
+        
+        .address {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 1rem;
+        }
+        
+        .social {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            section {
+                padding: 4rem 5%;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .awards {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">KESTREL</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="kestrel">KESTREL</p>
+            <h1>Elevated Dining<br>in Red Hook</h1>
+            <p class="tagline">New American cuisine with a sense of place</p>
+            <a href="#menu" class="hero-cta">View Menu</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2 class="section-title">The Restaurant</h2>
+            <p class="section-subtitle">Our Story</p>
+            
+            <p>Nestled in Red Hook's industrial waterfront, Cafe Kestrel brings refined yet approachable New American dining to one of Brooklyn's most overlooked neighborhoods. Our space—converted from a historic warehouse—blends exposed brick, soaring ceilings, and warm copper accents.</p>
+            <p>Chef-owned and operated, we believe in the power of simple ingredients treated with respect. Our menu changes with the seasons, sourcing from farms we know by name. Whether you're celebrating or simply savoring a weeknight, Kestrel welcomes you to the table.</p>
+            
+            <div class="awards">
+                <div class="award">
+                    <div class="award-year">2023</div>
+                    <div class="award-name">Best New Restaurant<br>Brooklyn Paper</div>
+                </div>
+                <div class="award">
+                    <div class="award-year">2024</div>
+                    <div class="award-name">Michelin Recommended</div>
+                </div>
+                <div class="award">
+                    <div class="award-year">2024</div>
+                    <div class="award-name">James Beard<br>Nominated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2 class="section-title">Seasonal Menu</h2>
+        <p class="section-subtitle">Spring / Summer 2024</p>
+        
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>Starters</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Charred Octopus</div>
+                        <div class="menu-item-desc">Romesco, fingerling potatoes, olive tapenade</div>
+                    </div>
+                    <div class="menu-item-price">$22</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Beef Tartare</div>
+                        <div class="menu-item-desc">Quail egg, capers, sourdough crisps</div>
+                    </div>
+                    <div class="menu-item-price">$19</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Roasted Beets</div>
+                        <div class="menu-item-desc">Goat cheese mousse, pistachio, citrus</div>
+                    </div>
+                    <div class="menu-item-price">$16</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Soup du Jour</div>
+                        <div class="menu-item-desc">Chef's daily selection</div>
+                    </div>
+                    <div class="menu-item-price">$14</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Mains</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Pan-Seared Salmon</div>
+                        <div class="menu-item-desc">Spring vegetables, lemon beurre blanc</div>
+                    </div>
+                    <div class="menu-item-price">$34</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Roasted Chicken</div>
+                        <div class="menu-item-desc">Herbed quinoa, charred onion, jus</div>
+                    </div>
+                    <div class="menu-item-price">$32</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Dry-Aged Ribeye</div>
+                        <div class="menu-item-desc">Bone marrow butter, roasted garlic, fries</div>
+                    </div>
+                    <div class="menu-item-price">$58</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Mushroom Risotto</div>
+                        <div class="menu-item-desc">Wild mushrooms, truffle, parmesan</div>
+                    </div>
+                    <div class="menu-item-price">$28</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Seared Scallops</div>
+                        <div class="menu-item-desc">Cauliflower puree, brown butter, capers</div>
+                    </div>
+                    <div class="menu-item-price">$38</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Desserts</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Olive Oil Cake</div>
+                        <div class="menu-item-desc">Whipped mascarpone, citrus</div>
+                    </div>
+                    <div class="menu-item-price">$12</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Dark Chocolate Tart</div>
+                        <div class="menu-item-desc">Sea salt, vanilla ice cream</div>
+                    </div>
+                    <div class="menu-item-price">$13</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Cheese Selection</div>
+                        <div class="menu-item-desc">Artisanal cheeses, honeycomb, crackers</div>
+                    </div>
+                    <div class="menu-item-price">$18</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h3>Drinks</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Cocktail Menu</div>
+                        <div class="menu-item-desc">Seasonal signatures & classics</div>
+                    </div>
+                    <div class="menu-item-price">$16-18</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Wine by Glass</div>
+                        <div class="menu-item-desc">Curated selection, ask your server</div>
+                    </div>
+                    <div class="menu-item-price">$14-24</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Craft Beer</div>
+                        <div class="menu-item-desc">Local & import selections</div>
+                    </div>
+                    <div class="menu-item-price">$9-14</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location" id="location">
+        <h2 class="section-title">Find Us</h2>
+        <p class="section-subtitle">Red Hook, Brooklyn</p>
+        
+        <div class="location-grid">
+            <div class="location-card">
+                <h3>📍 Location</h3>
+                <p>293 Van Brunt Street<br>Red Hook, Brooklyn, NY 11231</p>
+            </div>
+            <div class="location-card">
+                <h3>🕐 Hours</h3>
+                <p>Tue-Thu: 5pm - 10pm<br>Fri-Sat: 5pm - 11pm<br>Sun: 11am - 9pm<br>Closed Monday</p>
+            </div>
+            <div class="location-card">
+                <h3>📞 Reservations</h3>
+                <p>Walk-ins welcome<br>Reservations recommended<br>for parties of 6+</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-card">
+            <h3>Get in Touch</h3>
+            <a href="tel:+13475551234" class="phone">(347) 555-1234</a>
+            <p class="address">293 Van Brunt Street, Brooklyn, NY 11231</p>
+            <p class="social">@cafekestrel · #kestrelredhook</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Cafe Kestrel. All rights reserved.</p>
+    </footer>
+</body>
+</html>
